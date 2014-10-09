@@ -2,6 +2,13 @@
 <resources>
 
     <string name="app_name">Grouper</string>
-    <string name="hello_world">Hello world!</string>
+    <!--Menu Strings -->
+    <string name="ui_menu_search">search</string>
+    <string name="ui_menu_settings">settings</string>
+    
+    <!--Tab Strings-->
+    <string name="ui_tabname_feed">feed</string>
+    <string name="ui_tabname_discover">discover</string>
+    <string name="ui_tabname_todo">to-do list</string>
 
 </resources>
