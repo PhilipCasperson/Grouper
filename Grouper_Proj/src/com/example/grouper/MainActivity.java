@@ -4,15 +4,17 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	
+	private static final String TAB_KEY_INDEX = "tab_key";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +49,11 @@ public class MainActivity extends Activity {
 		//add the tabs to the action bar
 		actionbar.addTab(mFeedTab);
 		actionbar.addTab(mDiscoverTab);
-		actionbar.addTab(mToDoTab);
-		
-		
+		actionbar.addTab(mToDoTab);	
 	}
 	
-	public boolean onOptionsItemSelected(Menu menu) {
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 		return true;
@@ -66,7 +67,7 @@ public class MainActivity extends Activity {
 					Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.menuitem_settings:
-			Toast.makeText(this, getString(R.string.ui_menu_search),
+			Toast.makeText(this, getString(R.string.ui_menu_settings),
 					Toast.LENGTH_SHORT).show();
 			return true;
 		}
@@ -84,20 +85,19 @@ public class MainActivity extends Activity {
 		}
 
 		@Override
-		public void onTabSelected(Tab tab, android.app.FragmentTransaction ft) {
-			Toast.makeText(context, "Reselected!", Toast.LENGTH_SHORT).show();
+		public void onTabSelected(Tab tab, FragmentTransaction ft) {
+			ft.replace(R.id.fragment_container, fragment);
 			
 		}
 
 		@Override
-		public void onTabUnselected(Tab tab, android.app.FragmentTransaction ft) {
-			Toast.makeText(context, "Reselected!", Toast.LENGTH_SHORT).show();
+		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+			ft.remove(fragment);
 			
 		}
 
 		@Override
-		public void onTabReselected(Tab tab, android.app.FragmentTransaction ft) {
-			Toast.makeText(context, "Reselected!", Toast.LENGTH_SHORT).show();
+		public void onTabReselected(Tab tab, FragmentTransaction ft) {
 			
 		}
 
