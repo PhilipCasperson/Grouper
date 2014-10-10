@@ -68,6 +68,7 @@ public final class R {
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f050002;
+        public static final int MyActionBarTabTextStyle=0x7f050001;
     }
 }
