@@ -6,7 +6,10 @@ import android.app.Fragment;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +27,9 @@ public class MainActivity extends Activity {
 		//ActionBar
 		ActionBar actionbar = getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionbar.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+		actionbar.setStackedBackgroundDrawable(new ColorDrawable(Color.WHITE));
+		actionbar.setTitle(Html.fromHtml("<font color='#000000'>Grouper</font>"));
 		
 		//create new tabs and set up the titles of the tabs
 		ActionBar.Tab mFeedTab = actionbar.newTab().setText(
