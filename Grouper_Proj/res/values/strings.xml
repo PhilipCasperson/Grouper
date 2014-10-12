@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">Grouper</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="ui_tabs_feed">Feed</string>
+    <string name="ui_tabs_discover">Discover</string>
+    <string name="ui_tabs_todo">To-Do List</string>
 
 </resources>
