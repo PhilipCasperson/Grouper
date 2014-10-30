@@ -10,7 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-public class FeedFragment extends ListFragment implements AdapterView.OnItemClickListener {
+public class FeedFragment extends ListFragment {
+		
 	String[] activities={"Activity 1", "Activity 1", "Activity 2", "Activity 3", "Activity 4", "Activity 5", "Activity 6", "Activity 7", "Activity 8"};
 	//Call when activity is first created
 		@Override
@@ -20,10 +21,5 @@ public class FeedFragment extends ListFragment implements AdapterView.OnItemClic
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, activities);
 		setListAdapter(adapter);
 		return rootView;
-		
-	
 	}
-		public void onItemClick(AdapterView<?> adapterView, View view, int i, long l){
-			Toast.makeText(getActivity(), "Item" + 1, Toast.LENGTH_SHORT).show();
-		}
 }
