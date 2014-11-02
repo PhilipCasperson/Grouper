@@ -1,5 +1,8 @@
 package com.example.grouper;
 
+
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -10,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,8 +22,6 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
-	private static final String TAB_KEY_INDEX = "tab_key";
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,7 +58,37 @@ public class MainActivity extends Activity {
 		//add the tabs to the action bar
 		actionbar.addTab(mFeedTab);
 		actionbar.addTab(mDiscoverTab);
-		actionbar.addTab(mToDoTab);	
+		actionbar.addTab(mToDoTab);
+		
+		//connect to db
+		DatabaseHandler db = new DatabaseHandler(this);
+		/**
+		 * CRUD Operations, hope this works
+		 */
+		//Insert activities
+		Log.d("Insert: ", "Inserting...");
+		db.addEvent(new Event("Added to group", "Phil added to group"));
+		db.addEvent(new Event("Document added by Jared", "Jared added new document"));
+		db.addEvent(new Event("Document added by Kyle", "Kyle added new document"));
+		db.addEvent(new Event("Document added by Phil", "Phil added new document"));
+		db.addEvent(new Event("Document changed by Kyle ", "Member added new document"));
+		db.addEvent(new Event("Document changed by Jared", "Member added new document"));
+		db.addEvent(new Event("Added to group", "Phil added to group"));
+		db.addEvent(new Event("Document added by Jared", "Jared added new document"));
+		db.addEvent(new Event("Document added by Kyle", "Kyle added new document"));
+		db.addEvent(new Event("Document added by Phil", "Phil added new document"));
+		db.addEvent(new Event("Document changed by Kyle ", "Member added new document"));
+		db.addEvent(new Event("Document changed by Jared", "Member added new document"));
+		//Read all events
+		Log.d("Reading ", "Reading events");
+		List<Event> events = db.getAllEvents();
+		
+		for (Event ev : events){
+			String log = "Id: " + ev.getID() + ", Name: " + ev.getName() + " , Description" + ev.getDescription();
+			//Write events to log
+			Log.d("Name: ", log);
+		}
+		db.close();
 	}
 	
 	@Override
