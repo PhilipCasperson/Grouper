@@ -45,4 +45,7 @@ public class Event {
 	public void setDescription(String description){
 		this._description = description;
 	}
+	public String toString(){
+		return this._name;
+	}
 }

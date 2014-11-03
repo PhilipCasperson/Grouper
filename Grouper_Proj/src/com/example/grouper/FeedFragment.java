@@ -35,12 +35,13 @@ public class FeedFragment extends ListFragment {
 	
 	private DatabaseHandler dbHandler;
 	private Context fContext;
+	private List<Event> events;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.feedfragment, container, false);
 		fContext = getActivity();
 		dbHandler = new DatabaseHandler(fContext);
-		List<Event> events = dbHandler.getAllEvents();
+		events = dbHandler.getAllEvents();
 		ArrayAdapter<Event> adapter = new ArrayAdapter<Event>(fContext, android.R.layout.simple_list_item_1, events);
 		setListAdapter(adapter);
 		
@@ -51,6 +52,7 @@ public class FeedFragment extends ListFragment {
 		}
 		return rootView;
 	}
+	
 	
 }
 
