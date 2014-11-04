@@ -1,4 +1,4 @@
-package com.example.grouper;
+package com.example.grouper.database;
 
 public class Event {
 	//private var

@@ -3,12 +3,11 @@ package com.example.grouper;
 
 import java.util.List;
 
+import com.example.grouper.database.DatabaseHandler;
+import com.example.grouper.database.Event;
+
 import android.app.ListFragment;
-import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
-import android.content.Loader;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
