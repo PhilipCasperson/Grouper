@@ -3,6 +3,9 @@ package com.example.grouper;
 
 import java.util.List;
 
+import com.example.grouper.database.DatabaseHandler;
+import com.example.grouper.database.Todo;
+
 import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -36,12 +39,12 @@ public class ToDoFragment extends ListFragment {
 		View rootView = inflater.inflate(R.layout.todofragment, container, false);
 		fContext = getActivity();
 		dbHandler = new DatabaseHandler(fContext);
-		List<Event> events = dbHandler.getAllEvents();
-		ArrayAdapter<Event> adapter = new ArrayAdapter<Event>(fContext, android.R.layout.simple_list_item_1, events);
+		List<Todo> todoList = dbHandler.getAlltodos();
+		ArrayAdapter<Todo> adapter = new ArrayAdapter<Todo>(fContext, android.R.layout.simple_list_item_1, todoList);
 		setListAdapter(adapter);
 		
-		for (Event ev : events){
-			String log = "Id: " + ev.getID() + ", Name: " + ev.getName() + " , Description" + ev.getDescription();
+		for (Todo to : todoList){
+			String log = "Id: " + to.getID() + ", Name: " + to.getName() + " , Description" + to.getDescription();
 			//Write events to log
 			Log.d("Name: ", log);
 		}

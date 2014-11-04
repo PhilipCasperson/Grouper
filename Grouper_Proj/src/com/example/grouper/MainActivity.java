@@ -1,7 +1,10 @@
 package com.example.grouper;
 
 
-import java.util.List;
+
+import com.example.grouper.database.DatabaseHandler;
+import com.example.grouper.database.Event;
+import com.example.grouper.database.Todo;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -17,7 +20,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -81,13 +83,13 @@ public class MainActivity extends Activity {
 		db.addEvent(new Event("Document changed by Jared", "Member added new document"));
 		//Read all events
 		Log.d("Reading ", "Reading events");
-		List<Event> events = db.getAllEvents();
 		
-		for (Event ev : events){
-			String log = "Id: " + ev.getID() + ", Name: " + ev.getName() + " , Description" + ev.getDescription();
-			//Write events to log
-			Log.d("Name: ", log);
-		}
+		//Insert Todo Items
+		Log.d("Insert: ", "Inserting ToDo....");
+		db.addtodo(new Todo("Add other group members","We need to add the remaining group members"));
+		db.addtodo(new Todo("Add Todo Functionality","Make this feature work."));
+		db.addtodo(new Todo("Add algirithim","We need to add the algirithim for this project."));
+		
 		db.close();
 	}
 	
