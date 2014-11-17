@@ -12,6 +12,7 @@ import android.app.Fragment;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -104,8 +105,8 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menuitem_search:
-			Toast.makeText(this, getString(R.string.ui_menu_search),
-					Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(this, SearchableActivity.class);
+			startActivity(intent);
 			return true;
 		case R.id.menuitem_settings:
 			Toast.makeText(this, getString(R.string.ui_menu_settings),
