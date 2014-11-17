@@ -8,12 +8,14 @@ import com.example.grouper.database.Event;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 //public class DiscoverFragment extends ListFragment {
 //	String[] activities={"Activity 1", "Activity 1", "Activity 2", "Activity 3", "Activity 4", "Activity 5", "Activity 6", "Activity 7", "Activity 8", "Activity 9", "Activity 10"};
@@ -49,6 +51,12 @@ public class DiscoverFragment extends ListFragment {
 			Log.d("Name: ", log);
 		}
 		return rootView;
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		//Intent intent = new Intent(getActivity().getApplicationContext(), NewActivity.class);
+		//startActivity(intent);
 	}
 	
 }

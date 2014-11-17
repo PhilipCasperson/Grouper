@@ -8,12 +8,14 @@ import com.example.grouper.database.Todo;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 //public class ToDoFragment extends ListFragment {
 //	String[] activities={"todo 1", "todo 1", "todo 2", "todo 3", "todo 4", "todo 5", "todo 6", "todo 7", "todo 8"};
@@ -49,6 +51,12 @@ public class ToDoFragment extends ListFragment {
 			Log.d("Name: ", log);
 		}
 		return rootView;
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		//Intent intent = new Intent(getActivity().getApplicationContext(), NewActivity.class);
+		//startActivity(intent);
 	}
 	
 }

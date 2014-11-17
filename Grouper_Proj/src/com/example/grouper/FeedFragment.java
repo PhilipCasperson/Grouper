@@ -8,12 +8,17 @@ import com.example.grouper.database.Event;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Contacts.Groups;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 
 //public class FeedFragment extends ListFragment {
@@ -50,6 +55,12 @@ public class FeedFragment extends ListFragment {
 			Log.d("Name: ", log);
 		}
 		return rootView;
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		//Intent intent = new Intent(getActivity().getApplicationContext(), NewActivity.class);
+		//startActivity(intent);
 	}
 	
 	
