@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
+	private DatabaseHandler db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,7 +66,8 @@ public class MainActivity extends Activity {
 		actionbar.addTab(mToDoTab);
 		
 		//connect to db
-		DatabaseHandler db = new DatabaseHandler(this);
+		db = new DatabaseHandler(this);
+		db.getWritableDatabase();
 		/**
 		 * CRUD Operations, hope this works
 		 */
@@ -92,6 +95,37 @@ public class MainActivity extends Activity {
 		db.addtodo(new Todo("Add algirithim","We need to add the algirithim for this project."));
 		
 		db.close();
+	}
+	
+	@Override
+	protected void onResume() {
+		db.getWritableDatabase();
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		db.close();
+		super.onPause();
+	}
+	
+	@Override
+	protected void onRestart() {
+		db.getWritableDatabase();
+		super.onRestart();
+	}
+	
+	@Override
+	protected void onStop() {
+		db.close();
+		super.onStop();
+	}
+	
+	@Override
+	protected void onDestroy(){
+		db.getWritableDatabase();
+		db.deleteAll();
+		super.onDestroy();
 	}
 	
 	@Override

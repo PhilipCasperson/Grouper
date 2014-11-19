@@ -2,13 +2,12 @@ package com.example.grouper.database;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper{
 	//Static vars
@@ -26,6 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 	private static final String KEY_ID = "id";
 	private static final String KEY_NAME = "name";
 	private static final String KEY_DESCRIPTION = "description";
+	private static final String TAG = "Grouper";
 	
 	public DatabaseHandler(Context context){
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -220,6 +220,17 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 			
 			//return count
 			return cursor.getCount();
+		}
+		
+		//Create method to delete all
+		public void deleteAll() {
+			SQLiteDatabase db = this.getWritableDatabase();
+			//Drop old table if exists
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
+			db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
+			//db.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPS);
+			//Create table again
+			onCreate(db);
 		}
 	
 }
