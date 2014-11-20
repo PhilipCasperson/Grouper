@@ -44,6 +44,7 @@ public class Todo {
 		public void setDescription(String description){
 			this._description = description;
 		}
+		@Override
 		public String toString(){
 			return this._name;
 		}
