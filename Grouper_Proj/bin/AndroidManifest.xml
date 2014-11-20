@@ -27,6 +27,10 @@
             android:name=".SearchableActivity"
             android:label="@string/title_activity_searchable" >
         </activity>
+        <activity
+            android:name=".TodoActivity"
+            android:label="@string/title_activity_new_todo">
+        </activity>
     </application>
 
 </manifest>

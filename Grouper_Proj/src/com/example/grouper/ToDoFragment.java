@@ -8,7 +8,6 @@ import com.example.grouper.database.Todo;
 
 import android.app.ListFragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,6 +36,7 @@ public class ToDoFragment extends ListFragment {
 	private DatabaseHandler dbHandler;
 	private Context fContext;
 	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.todofragment, container, false);
 		fContext = getActivity();
