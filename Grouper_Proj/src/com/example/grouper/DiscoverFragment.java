@@ -14,20 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-//public class DiscoverFragment extends ListFragment {
-//	String[] activities={"Activity 1", "Activity 1", "Activity 2", "Activity 3", "Activity 4", "Activity 5", "Activity 6", "Activity 7", "Activity 8", "Activity 9", "Activity 10"};
-//	//Call when activity is first created
-//		@Override
-//		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//		
-//		//Inflate the layout for this fragment
-//		View rootView = inflater.inflate(R.layout.discoverfragment, container, false);
-//		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, activities);
-//		setListAdapter(adapter);
-//		return rootView;
-//	}
-//}
 
 public class DiscoverFragment extends ListFragment {
 	public static final String TAG = DiscoverFragment.class.getSimpleName();
@@ -35,6 +23,7 @@ public class DiscoverFragment extends ListFragment {
 	private DatabaseHandler dbHandler;
 	private Context fContext;
 	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.discoverfragment, container, false);
 		fContext = getActivity();
@@ -49,6 +38,12 @@ public class DiscoverFragment extends ListFragment {
 			Log.d("Name: ", log);
 		}
 		return rootView;
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		//Intent intent = new Intent(getActivity().getApplicationContext(), NewActivity.class);
+		//startActivity(intent);
 	}
 	
 }

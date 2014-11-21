@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 //public class ToDoFragment extends ListFragment {
 //	String[] activities={"todo 1", "todo 1", "todo 2", "todo 3", "todo 4", "todo 5", "todo 6", "todo 7", "todo 8"};
@@ -35,6 +36,7 @@ public class ToDoFragment extends ListFragment {
 	private DatabaseHandler dbHandler;
 	private Context fContext;
 	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 		View rootView = inflater.inflate(R.layout.todofragment, container, false);
 		fContext = getActivity();
@@ -49,6 +51,12 @@ public class ToDoFragment extends ListFragment {
 			Log.d("Name: ", log);
 		}
 		return rootView;
+	}
+	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		//Intent intent = new Intent(getActivity().getApplicationContext(), NewActivity.class);
+		//startActivity(intent);
 	}
 	
 }

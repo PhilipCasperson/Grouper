@@ -2,13 +2,12 @@ package com.example.grouper.database;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper{
 	//Static vars
@@ -28,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 	private static final String KEY_NAME = "name";
 	private static final String KEY_DESCRIPTION = "description";
 	private static final String FOREIGN_KEY_GROUP = "groupid";
+	private static final String TAG = "Grouper";
 	
 	public DatabaseHandler(Context context){
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);

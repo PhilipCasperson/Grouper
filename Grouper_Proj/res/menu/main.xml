@@ -12,5 +12,10 @@
         	android:showAsAction="ifRoom"
         	android:title="@string/ui_menu_settings">
     	</item>
-        
+        <item
+            android:id="@+id/menuitem_new_todo"
+            android:icon="@drawable/ic_menu_edit"
+            android:showAsAction="ifRoom"
+            android:title="@string/ui_menu_new_todo">
+        </item>
     </menu>

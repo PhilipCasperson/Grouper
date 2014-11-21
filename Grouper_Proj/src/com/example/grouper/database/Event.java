@@ -60,6 +60,7 @@ public class Event {
 	public void setGroupId(int id){
 		this._groupId = id;
 	}
+	@Override
 	public String toString(){
 		return this._name;
 	}

@@ -60,6 +60,7 @@ public class Todo {
 			return this._groupId;
 		}
 		//override toString
+		@Override
 		public String toString(){
 			return this._name;
 		}

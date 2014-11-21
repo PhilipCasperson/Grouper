@@ -13,6 +13,7 @@ import android.app.Fragment;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -66,7 +67,9 @@ public class MainActivity extends Activity {
 		actionbar.addTab(mToDoTab);
 		
 		//connect to db
-		DatabaseHandler db = new DatabaseHandler(this);
+		db = new DatabaseHandler(this);
+		db.getWritableDatabase();
+		db.deleteAll();
 		/**
 		 * CRUD Operations, hope this works
 		 */
@@ -101,12 +104,35 @@ public class MainActivity extends Activity {
 	}
 	
 	@Override
-	protected void onDestroy(){
+	protected void onResume() {
 		db.getWritableDatabase();
-		db.deleteAll();
-		db.close();
-		super.onDestroy();
+		super.onResume();
 	}
+	
+	@Override
+	protected void onPause() {
+		db.close();
+		super.onPause();
+	}
+	
+	@Override
+	protected void onRestart() {
+		db.getWritableDatabase();
+		super.onRestart();
+	}
+	
+	@Override
+	protected void onStop() {
+		db.close();
+		super.onStop();
+	}
+	
+//	@Override
+//	protected void onDestroy(){
+//		db.getWritableDatabase();
+//		db.deleteAll();
+//		super.onDestroy();
+//	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -119,13 +145,17 @@ public class MainActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.menuitem_search:
-			Toast.makeText(this, getString(R.string.ui_menu_search),
-					Toast.LENGTH_SHORT).show();
+			Intent intent = new Intent(this, SearchableActivity.class);
+			startActivity(intent);
+			startActivity(new Intent(this, SearchableActivity.class));
 			return true;
 		case R.id.menuitem_settings:
 			Toast.makeText(this, getString(R.string.ui_menu_settings),
 					Toast.LENGTH_SHORT).show();
 			return true;
+		case R.id.menuitem_new_todo:
+			Intent todoIntent = new Intent(this, TodoActivity.class);
+			startActivity(todoIntent);
 		}
 		return false;
 	}
@@ -143,8 +173,7 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onTabSelected(Tab tab, FragmentTransaction ft) {
-			ft.replace(R.id.fragment_container, fragment);
-			
+			ft.replace(R.id.fragment_container, fragment);	
 		}
 
 		@Override
