@@ -24,6 +24,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".GroupFragment"
+            android:label="@string/title_activity_group_fragment" >
+        </activity>
+        <activity
+            android:name=".GroupViewActivity"
+            android:label="@string/title_activity_group_view" >
+        </activity>
+        <activity
             android:name=".SearchableActivity"
             android:label="@string/title_activity_searchable" >
         </activity>
