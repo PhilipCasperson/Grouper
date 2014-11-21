@@ -5,20 +5,27 @@ public class Todo {
 	int _id;
 	String _name;
 	String _description;
+	int _groupId;
 	
 	//empty constructor
 	public Todo() {
 		
 	}
-	public Todo (int id, String name, String description){
+	public Todo (int id, String name, String description, int groupid){
 		this._id = id;
 		this._name = name;
 		this._description = description;
+		this._groupId = groupid;
 	}
 	
 	public Todo(String name, String description){
 		this._name = name;
 		this._description = description;
+	}
+	public Todo(String name, String description, int groupid){
+		this._name = name;
+		this._description = description;
+		this._groupId = groupid;
 	}
 	//get ID
 		public int getID(){
@@ -44,6 +51,15 @@ public class Todo {
 		public void setDescription(String description){
 			this._description = description;
 		}
+		//set group id
+		public void setGroup(int id){
+			this._groupId = id;
+		}
+		//get group id
+		public int getGroupId(){
+			return this._groupId;
+		}
+		//override toString
 		public String toString(){
 			return this._name;
 		}

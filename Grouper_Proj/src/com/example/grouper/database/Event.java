@@ -5,21 +5,28 @@ public class Event {
 	int _id;
 	String _name;
 	String _description;
+	int _groupId;
 	
 	//Empty constructor
 	public Event(){
 		
 	}
 	//constructor
-	public Event (int id, String name, String description){
+	public Event (int id, String name, String description, int groupid){
 		this._id = id;
 		this._name = name;
 		this._description = description;
+		this._groupId = groupid;
 	}
 	//another constructor
 	public Event(String name, String description){
 		this._name = name;
 		this._description = description;
+	}
+	public Event(String name, String description, int groupid){
+		this._name = name;
+		this._description = description;
+		this._groupId = groupid;
 	}
 	//get ID
 	public int getID(){
@@ -44,6 +51,14 @@ public class Event {
 	//set description
 	public void setDescription(String description){
 		this._description = description;
+	}
+	//get ID
+	public int getGroupId(){
+		return this._groupId;
+	}
+	//set ID
+	public void setGroupId(int id){
+		this._groupId = id;
 	}
 	public String toString(){
 		return this._name;

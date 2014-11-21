@@ -4,6 +4,7 @@ package com.example.grouper;
 
 import com.example.grouper.database.DatabaseHandler;
 import com.example.grouper.database.Event;
+import com.example.grouper.database.Group;
 import com.example.grouper.database.Todo;
 
 import android.app.ActionBar;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
+	private DatabaseHandler db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,27 +42,27 @@ public class MainActivity extends Activity {
 		//create new tabs and set up the titles of the tabs
 		ActionBar.Tab mFeedTab = actionbar.newTab().setText(
 				getString(R.string.ui_tabname_feed));
-		ActionBar.Tab mDiscoverTab = actionbar.newTab().setText(
-				getString(R.string.ui_tabname_discover));
+		ActionBar.Tab mGroupTab = actionbar.newTab().setText(
+				getString(R.string.ui_tabname_group));
 		ActionBar.Tab mToDoTab = actionbar.newTab().setText(
 				getString(R.string.ui_tabname_todo));
 		
 		//create the fragments
 		Fragment mFeedFragment = new FeedFragment();
-		Fragment mDiscoverFragment = new DiscoverFragment();
+		Fragment mGroupFragment = new GroupFragment();
 		Fragment mToDoFragment = new ToDoFragment();
 		
 		//bind the fragments to the tabs - set up tabListeners for each tab
 		mFeedTab.setTabListener(new MyTabsListener(mFeedFragment,
 				getApplicationContext()));
-		mDiscoverTab.setTabListener(new MyTabsListener(mDiscoverFragment,
+		mGroupTab.setTabListener(new MyTabsListener(mGroupFragment,
 				getApplicationContext()));
 		mToDoTab.setTabListener(new MyTabsListener(mToDoFragment,
 				getApplicationContext()));
 				
 		//add the tabs to the action bar
 		actionbar.addTab(mFeedTab);
-		actionbar.addTab(mDiscoverTab);
+		actionbar.addTab(mGroupTab);
 		actionbar.addTab(mToDoTab);
 		
 		//connect to db
@@ -67,30 +70,42 @@ public class MainActivity extends Activity {
 		/**
 		 * CRUD Operations, hope this works
 		 */
+		//Insert Groups
+		Log.d("Insert: ", "Inserting Groups...");
+		db.addgroup(new Group(0, "Test1", "This is the first Test Group"));
+		db.addgroup(new Group(1, "Test2", "This is the second Test Group"));
 		//Insert activities
 		Log.d("Insert: ", "Inserting...");
-		db.addEvent(new Event("Added to group", "Phil added to group"));
-		db.addEvent(new Event("Document added by Jared", "Jared added new document"));
-		db.addEvent(new Event("Document added by Kyle", "Kyle added new document"));
-		db.addEvent(new Event("Document added by Phil", "Phil added new document"));
-		db.addEvent(new Event("Document changed by Kyle ", "Member added new document"));
-		db.addEvent(new Event("Document changed by Jared", "Member added new document"));
-		db.addEvent(new Event("Added to group", "Phil added to group"));
-		db.addEvent(new Event("Document added by Jared", "Jared added new document"));
-		db.addEvent(new Event("Document added by Kyle", "Kyle added new document"));
-		db.addEvent(new Event("Document added by Phil", "Phil added new document"));
-		db.addEvent(new Event("Document changed by Kyle ", "Member added new document"));
-		db.addEvent(new Event("Document changed by Jared", "Member added new document"));
+		db.addEvent(new Event("Added to group", "Phil added to group", 0));
+		db.addEvent(new Event("Document added by Jared", "Jared added new document", 0));
+		db.addEvent(new Event("Document added by Kyle", "Kyle added new document", 0));
+		db.addEvent(new Event("Document added by Phil", "Phil added new document", 0));
+		db.addEvent(new Event("Document changed by Kyle ", "Member added new document", 0));
+		db.addEvent(new Event("Document changed by Jared", "Member added new document", 0));
+		db.addEvent(new Event("Added to group", "Phil added to group", 1));
+		db.addEvent(new Event("Document added by Jared", "Jared added new document", 1));
+		db.addEvent(new Event("Document added by Kyle", "Kyle added new document", 1));
+		db.addEvent(new Event("Document added by Phil", "Phil added new document", 1));
+		db.addEvent(new Event("Document changed by Kyle ", "Member added new document", 1));
+		db.addEvent(new Event("Document changed by Jared", "Member added new document", 1));
 		//Read all events
 		Log.d("Reading ", "Reading events");
 		
 		//Insert Todo Items
 		Log.d("Insert: ", "Inserting ToDo....");
-		db.addtodo(new Todo("Add other group members","We need to add the remaining group members"));
-		db.addtodo(new Todo("Add Todo Functionality","Make this feature work."));
-		db.addtodo(new Todo("Add algirithim","We need to add the algirithim for this project."));
+		db.addtodo(new Todo("Add other group members","We need to add the remaining group members", 0));
+		db.addtodo(new Todo("Add Todo Functionality","Make this feature work.", 0));
+		db.addtodo(new Todo("Add algirithim","We need to add the algirithim for this project.", 1));
 		
 		db.close();
+	}
+	
+	@Override
+	protected void onDestroy(){
+		db.getWritableDatabase();
+		db.deleteAll();
+		db.close();
+		super.onDestroy();
 	}
 	
 	@Override
@@ -115,6 +130,7 @@ public class MainActivity extends Activity {
 		return false;
 	}
 }
+
 	
 	class MyTabsListener implements ActionBar.TabListener {
 		public Fragment fragment;
