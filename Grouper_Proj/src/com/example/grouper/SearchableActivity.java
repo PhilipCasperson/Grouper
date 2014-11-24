@@ -19,6 +19,9 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -45,9 +48,10 @@ public class SearchableActivity extends Activity {
 		ActionBar actionbar = getActionBar();
 		actionbar.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
 		actionbar.setTitle(Html.fromHtml("<font color='#000000'>Search Groups</font>"));
-		
+		db = new DatabaseHandler(this);
+		db.getWritableDatabase();
 		List<Group> groupList = db.getAllgroups();
-		
+		db.close();
 		
 		//Listveiw Data
 		//String groups[] = {"Group 1", "Mobile App Dev", "Database Mgmt", "Database mgm 2",
@@ -59,6 +63,19 @@ public class SearchableActivity extends Activity {
 		//Adding items to ListView
 		adapter = new ArrayAdapter<Group>(this, R.layout.searchable_list_item, R.id.searchable_group_name, groupList);
 		lv.setAdapter(adapter);
+		lv.setOnItemClickListener(new OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Group group = (Group)adapter.getItem(position);
+				Intent intent = new Intent(getApplicationContext(), GroupViewActivity.class);
+				intent.putExtra("index", group.getID());
+				startActivity(intent);
+				
+			}
+			
+		});
 		
 		/**
          * Enabling Search Filter
