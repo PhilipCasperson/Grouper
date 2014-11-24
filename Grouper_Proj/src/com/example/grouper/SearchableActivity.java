@@ -72,7 +72,6 @@ public class SearchableActivity extends Activity {
 				Intent intent = new Intent(getApplicationContext(), GroupViewActivity.class);
 				intent.putExtra("index", group.getID());
 				startActivity(intent);
-				
 			}
 			
 		});
