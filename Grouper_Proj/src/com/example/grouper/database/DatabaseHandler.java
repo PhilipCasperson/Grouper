@@ -20,6 +20,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 	private static final String TABLE_EVENTS = "events";
 	private static final String TABLE_TODO = "todo";
 	private static final String TABLE_GROUPS = "groups";
+	private static final String TABLE_DISCOVER = "discover";
 	//Common column names
 	//Since they both have the same columns in each table no need
 	//to do it twice
@@ -52,12 +53,21 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 	private static final String CREATE_GROUP_TABLE = "CREATE TABLE " + TABLE_GROUPS + "("
 			+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
 			+ KEY_DESCRIPTION + " TEXT" + ")";
-	 
+	//Create Discover
+	private static final String CREATE_DISCOVER_TABLE = "CREATE TABLE " + TABLE_DISCOVER + "("
+			+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
+			+ KEY_DESCRIPTION + " TEXT, "
+			+ FOREIGN_KEY_GROUP + " INTEGER," 
+			+ "FOREIGN KEY(" + FOREIGN_KEY_GROUP + ") REFERENCES " 
+			+ TABLE_GROUPS + "(" + KEY_ID + ")" +")";
+	
+	//Run SQL commands
 	@Override
 	public void onCreate(SQLiteDatabase db){
 		db.execSQL(CREATE_GROUP_TABLE);
 		db.execSQL(CREATE_EVENTS_TABLE);
 		db.execSQL(CREATE_TODO_TABLE);
+		db.execSQL(CREATE_DISCOVER_TABLE);
 	}
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
@@ -65,11 +75,10 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
 		db.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPS);
+		db.execSQL("DROP TABLE IF EXISTS " + TABLE_DISCOVER);
 		//Create table again
 		onCreate(db);
 	}
-	
-	
 	
 	//CRUD operations
 	//Add new event
@@ -262,10 +271,10 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 			return cursor.getCount();
 		}
 		
-		//CRUD OPERATIONS For todo
-		//CRUD operations
-			//Add new todo
-			public void addtodo(Todo todo){
+	//CRUD OPERATIONS For todo
+	//CRUD operations
+		//Add new todo
+		public void addtodo(Todo todo){
 				SQLiteDatabase db = this.getWritableDatabase();
 				
 				ContentValues values = new ContentValues();
@@ -277,8 +286,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				db.insert(TABLE_TODO, null, values);
 				db.close();
 			}
-			//Get single todo
-			public Todo gettodo(int id){
+		//Get single todo
+		public Todo gettodo(int id){
 				SQLiteDatabase db = this.getReadableDatabase();
 				
 				Cursor cursor = db.query(TABLE_TODO, new String[]{ KEY_ID, KEY_NAME, KEY_DESCRIPTION, FOREIGN_KEY_GROUP }, KEY_ID + "=?", 
@@ -292,8 +301,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				
 				return todo;
 			}
-			//Get all todos
-			public List<Todo> getAlltodos(){
+		//Get all todos
+		public List<Todo> getAlltodos(){
 				List<Todo> todoList = new ArrayList<Todo>();
 				//Select all database query
 				String selectQuery = "SELECT * FROM " + TABLE_TODO;
@@ -317,8 +326,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				//return todo list
 				return todoList;
 			}
-			//Updating single todo
-			public int updatetodo(Todo todo){
+		//Updating single todo
+		public int updatetodo(Todo todo){
 				SQLiteDatabase db = this.getWritableDatabase();
 				
 				ContentValues values = new ContentValues();
@@ -330,15 +339,15 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				return db.update(TABLE_TODO, values, KEY_ID + " = ?",
 						new String[] { String.valueOf(todo.getID())});
 			}
-			//Deleting single todo
-			public void deletetodo(Todo todo){
+		//Deleting single todo
+		public void deletetodo(Todo todo){
 				SQLiteDatabase db = this.getWritableDatabase();
 				db.delete(TABLE_TODO, KEY_ID + " = ?", 
 						new String[] { String.valueOf(todo.getID())});
 				db.close();
 			}
-			//Get todo count
-			public int gettodosCount(){
+		//Get todo count
+		public int gettodosCount(){
 				String countQuery = "SELECT * FROM " + TABLE_TODO;
 				SQLiteDatabase db = this.getReadableDatabase();
 				Cursor cursor = db.rawQuery(countQuery, null);
@@ -347,8 +356,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				//return count
 				return cursor.getCount();
 			}
-			//get all the to-do from a group
-			public List<Todo> getTodosFromGroup(int i){
+		//get all the to-do from a group
+		public List<Todo> getTodosFromGroup(int i){
 				List<Todo> todoList = new ArrayList<Todo>();
 				String selectQuery = "SELECT * FROM " + TABLE_TODO + " WHERE " 
 						+ FOREIGN_KEY_GROUP + "=" + i;
@@ -370,8 +379,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				
 				return todoList;
 			}
-			//Create method to delete all
-			public void deleteAll() {
+		//Create method to delete all
+		public void deleteAll() {
 				SQLiteDatabase db = this.getWritableDatabase();
 				//Drop old table if exists
 				db.execSQL("DROP TABLE IF EXISTS " + TABLE_EVENTS);
@@ -380,4 +389,85 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 				//Create table again
 				onCreate(db);
 			}
+	//CRUD OPERATIONS For Discover
+	//CRUD OPERATIONS
+		//Add new discover event
+		public void addDiscover(Discover discover){
+			SQLiteDatabase db = this.getWritableDatabase();
+			
+			ContentValues values = new ContentValues();
+			values.put(KEY_NAME, discover.getName());
+			values.put(KEY_DESCRIPTION, discover.getDescription());
+			
+			//Insert row
+			db.insert(TABLE_DISCOVER, null, values);
+			db.close();
+		}
+		//get single discover event
+		public Discover getDiscover(int id){
+			SQLiteDatabase db = this.getReadableDatabase();
+			
+			Cursor cursor = db.query(TABLE_DISCOVER, new String[]{ KEY_ID, KEY_NAME, KEY_DESCRIPTION}, KEY_ID + "=?",
+					new String[] {String.valueOf(id)} , null, null, null, null);
+			Discover discover = new Discover(Integer.parseInt(cursor.getString(0)),
+					cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)));
+			
+			return discover;
+		}
+		//get all discover events
+		public List<Discover> getAllDiscoverEvents(){
+			List<Discover> discoverList = new ArrayList<Discover>();
+			//Select all database query
+			String selectQuery = "SELECT * FROM " + TABLE_DISCOVER;
+			
+			SQLiteDatabase db = this.getWritableDatabase();
+			Cursor cursor = db.rawQuery(selectQuery, null);
+			
+			//loop through all rows and add to the discover list
+			if (cursor.moveToFirst()) {
+				do {
+					Discover discover = new Discover();
+					discover.setID(Integer.parseInt(cursor.getString(0)));
+					discover.setName(cursor.getString(1));
+					discover.setDescription(cursor.getString(2));
+					discover.setGroupId(Integer.parseInt(cursor.getString(3)));
+					//Add todo to list
+					discoverList.add(discover);
+				} while (cursor.moveToNext());
+			}
+			cursor.close();
+			//return discover list
+			return discoverList;
+		}
+		//update single discover event
+		public int updateDiscover(Discover discover){
+			SQLiteDatabase db = this.getWritableDatabase();
+			
+			ContentValues values = new ContentValues();
+			values.put(KEY_NAME, discover.getName());
+			values.put(KEY_DESCRIPTION, discover.getDescription());
+			values.put(FOREIGN_KEY_GROUP, discover.getGroupId());
+			
+			//update row
+			return db.update(TABLE_DISCOVER, values, KEY_ID + " = ?", 
+					new String[] {String.valueOf(discover.getID())});
+		}
+		//delete single discover
+		public void deleteDiscover(Discover discover){
+			SQLiteDatabase db = this.getWritableDatabase();
+			db.delete(TABLE_DISCOVER, KEY_ID + " = ?", 
+					new String[] { String.valueOf(discover.getID())});
+			db.close();
+		}
+		//get discover count
+		public int getDiscoverCount(){
+			String countQuery = "SELECT * FROM " + TABLE_DISCOVER;
+			SQLiteDatabase db = this.getReadableDatabase();
+			Cursor cursor = db.rawQuery(countQuery, null);
+			cursor.close();
+			
+			//return count
+			return cursor.getCount();
+		}
+		
 }

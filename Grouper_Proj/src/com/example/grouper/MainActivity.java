@@ -148,14 +148,13 @@ public class MainActivity extends Activity {
 			Intent intent = new Intent(this, SearchableActivity.class);
 			startActivity(intent);
 			return true;
-		case R.id.menuitem_settings:
-			Toast.makeText(this, getString(R.string.ui_menu_settings),
-					Toast.LENGTH_SHORT).show();
-			return true;
 		case R.id.menuitem_new_todo:
 			Intent todoIntent = new Intent(this, TodoActivity.class);
 			startActivity(todoIntent);
 			return true;
+		case R.id.menuitem_discover:
+			Intent discoverIntent = new Intent(this, DiscoverActivity.class);
+			startActivity(discoverIntent);
 		}
 		return false;
 	}
