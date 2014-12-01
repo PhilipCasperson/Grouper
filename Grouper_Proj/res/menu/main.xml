@@ -7,10 +7,10 @@
         	android:title="@string/ui_menu_search">
     	</item>
     	<item
-        	android:id="@+id/menuitem_settings"
-        	android:icon="@drawable/ic_sysbar_quicksettings"
+        	android:id="@+id/menuitem_map"
+        	android:icon="@drawable/ic_menu_mapmode"
         	android:showAsAction="ifRoom"
-        	android:title="@string/ui_menu_settings">
+        	android:title="@string/ui_menu_map">
     	</item>
         <item
             android:id="@+id/menuitem_new_todo"

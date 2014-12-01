@@ -17,6 +17,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -103,23 +104,24 @@ public class SearchableActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.menuitem_settings) {
-			Toast.makeText(this, getString(R.string.ui_menu_settings),
-					Toast.LENGTH_SHORT).show();
+		switch (item.getItemId()) {
+		case R.id.menuitem_map:
+			Intent mapIntent = new Intent(this, MapActivity.class);
+			startActivity(mapIntent);
+			return true;
+		case R.id.menuitem_new_todo:
+			Intent todoIntent = new Intent(this, TodoActivity.class);
+			startActivity(todoIntent);
 			return true;
 		}
-		return super.onOptionsItemSelected(item);
+		return false;
 	}
 	
 //	public void onListItemClick(ListView l, View v, int position, long id){
