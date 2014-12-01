@@ -7,12 +7,14 @@ import com.example.grouper.database.Event;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class GroupEventFragment extends ListFragment {
 	public static final String TAG = GroupEventFragment.class.getSimpleName();
@@ -38,6 +40,12 @@ public class GroupEventFragment extends ListFragment {
 		}
 		return rootView;
 	}
-	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		Event event = (Event)getListAdapter().getItem(position);
+		Intent intent = new Intent(getActivity().getApplicationContext(), EventViewActivity.class);
+		intent.putExtra("index", event.getID());
+		startActivity(intent);
+	}
 	
 }

@@ -8,6 +8,7 @@ import com.example.grouper.database.Event;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,8 +44,10 @@ public class FeedFragment extends ListFragment {
 	
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id){
-		//Intent intent = new Intent(getActivity().getApplicationContext(), NewActivity.class);
-		//startActivity(intent);
+		Event event = (Event)getListAdapter().getItem(position);
+		Intent intent = new Intent(getActivity().getApplicationContext(), EventViewActivity.class);
+		intent.putExtra("index", event.getID());
+		startActivity(intent);
 	}
 	
 	

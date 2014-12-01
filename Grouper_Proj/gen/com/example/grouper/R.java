@@ -417,33 +417,35 @@ containing a value of this type.
         public static final int buyButton=0x7f07000a;
         public static final int buy_now=0x7f07000f;
         public static final int buy_with_google=0x7f07000e;
-        public static final int cancelButton=0x7f070016;
+        public static final int cancelButton=0x7f070018;
         public static final int classic=0x7f070011;
-        public static final int container=0x7f07001c;
-        public static final int fragment_container=0x7f070014;
+        public static final int container=0x7f07001e;
+        public static final int eventDescription=0x7f070015;
+        public static final int eventTitle=0x7f070014;
+        public static final int fragment_container=0x7f070016;
         public static final int grayscale=0x7f070012;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hybrid=0x7f070004;
-        public static final int inputSearch=0x7f07001a;
-        public static final int list_view=0x7f07001b;
-        public static final int map=0x7f070015;
+        public static final int inputSearch=0x7f07001c;
+        public static final int list_view=0x7f07001d;
+        public static final int map=0x7f070017;
         public static final int match_parent=0x7f07000c;
-        public static final int menuitem_map=0x7f07001f;
-        public static final int menuitem_new_todo=0x7f070020;
-        public static final int menuitem_search=0x7f07001e;
+        public static final int menuitem_map=0x7f070021;
+        public static final int menuitem_new_todo=0x7f070022;
+        public static final int menuitem_search=0x7f070020;
         public static final int monochrome=0x7f070013;
-        public static final int newDescription=0x7f070018;
-        public static final int newTitle=0x7f070019;
+        public static final int newDescription=0x7f07001a;
+        public static final int newTitle=0x7f07001b;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
         public static final int production=0x7f070007;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
-        public static final int searchable_group_name=0x7f07001d;
+        public static final int searchable_group_name=0x7f07001f;
         public static final int selectionDetails=0x7f07000b;
         public static final int strict_sandbox=0x7f070009;
-        public static final int submitButton=0x7f070017;
+        public static final int submitButton=0x7f070019;
         public static final int terrain=0x7f070003;
         public static final int wrap_content=0x7f07000d;
     }
@@ -451,17 +453,18 @@ containing a value of this type.
         public static final int google_play_services_version=0x7f080000;
     }
     public static final class layout {
-        public static final int activity_group_fragment=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_map=0x7f030002;
-        public static final int activity_newtodo=0x7f030003;
-        public static final int activity_searchable=0x7f030004;
-        public static final int discoverfragment=0x7f030005;
-        public static final int feedfragment=0x7f030006;
-        public static final int group_events=0x7f030007;
-        public static final int groupview_activity=0x7f030008;
-        public static final int searchable_list_item=0x7f030009;
-        public static final int todofragment=0x7f03000a;
+        public static final int activity_eventview=0x7f030000;
+        public static final int activity_group_fragment=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_map=0x7f030003;
+        public static final int activity_newtodo=0x7f030004;
+        public static final int activity_searchable=0x7f030005;
+        public static final int discoverfragment=0x7f030006;
+        public static final int feedfragment=0x7f030007;
+        public static final int group_events=0x7f030008;
+        public static final int groupview_activity=0x7f030009;
+        public static final int searchable_list_item=0x7f03000a;
+        public static final int todofragment=0x7f03000b;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -573,20 +576,21 @@ containing a value of this type.
         public static final int create_calendar_title=0x7f050004;
         public static final int decline=0x7f050003;
         public static final int hello_world=0x7f05002c;
-        public static final int new_todo_description=0x7f050034;
-        public static final int new_todo_title=0x7f050033;
-        public static final int new_todo_toast=0x7f050035;
+        public static final int new_todo_description=0x7f050035;
+        public static final int new_todo_title=0x7f050034;
+        public static final int new_todo_toast=0x7f050036;
         public static final int store_picture_message=0x7f050001;
         public static final int store_picture_title=0x7f050000;
+        public static final int title_activity_event_view=0x7f05002f;
         public static final int title_activity_group_fragment=0x7f05002b;
         public static final int title_activity_group_view=0x7f05002e;
-        public static final int title_activity_map=0x7f050036;
+        public static final int title_activity_map=0x7f050037;
         /**  Todo Strings 
          */
-        public static final int title_activity_new_todo=0x7f050032;
-        public static final int title_activity_searchable=0x7f050031;
-        public static final int ui_groupactivity_tabname_events=0x7f05002f;
-        public static final int ui_groupactivity_tabname_todos=0x7f050030;
+        public static final int title_activity_new_todo=0x7f050033;
+        public static final int title_activity_searchable=0x7f050032;
+        public static final int ui_groupactivity_tabname_events=0x7f050030;
+        public static final int ui_groupactivity_tabname_todos=0x7f050031;
         public static final int ui_menu_map=0x7f050025;
         public static final int ui_menu_new_todo=0x7f050026;
         /**  Menu Strings 

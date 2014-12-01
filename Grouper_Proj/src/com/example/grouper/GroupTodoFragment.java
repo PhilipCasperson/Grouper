@@ -7,12 +7,14 @@ import com.example.grouper.database.Todo;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class GroupTodoFragment extends ListFragment {
 	public static final String TAG = GroupTodoFragment.class.getSimpleName();
@@ -37,6 +39,12 @@ public class GroupTodoFragment extends ListFragment {
 		}
 		return rootView;
 	}
-	
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		Todo todo = (Todo)getListAdapter().getItem(position);
+		Intent intent = new Intent(getActivity().getApplicationContext(), GroupViewActivity.class);
+		intent.putExtra("index", todo.getID());
+		startActivity(intent);
+	}
 	
 }

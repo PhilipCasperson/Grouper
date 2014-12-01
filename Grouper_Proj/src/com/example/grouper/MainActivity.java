@@ -22,7 +22,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
@@ -86,11 +85,6 @@ public class MainActivity extends Activity {
 		db.addEvent(new Event("Document changed by Kyle ", "Member added new document", 0));
 		db.addEvent(new Event("Document changed by Jared", "Member added new document", 0));
 		db.addEvent(new Event("Added to group", "Phil added to group", 1));
-		db.addEvent(new Event("Document added by Jared", "Jared added new document", 1));
-		db.addEvent(new Event("Document added by Kyle", "Kyle added new document", 1));
-		db.addEvent(new Event("Document added by Phil", "Phil added new document", 1));
-		db.addEvent(new Event("Document changed by Kyle ", "Member added new document", 1));
-		db.addEvent(new Event("Document changed by Jared", "Member added new document", 1));
 		//Read all events
 		Log.d("Reading ", "Reading events");
 		

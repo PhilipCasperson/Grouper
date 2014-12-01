@@ -3,7 +3,6 @@ package com.example.grouper;
 import java.util.List;
 
 import com.example.grouper.database.DatabaseHandler;
-import com.example.grouper.database.Event;
 import com.example.grouper.database.Group;
 
 import android.app.ListFragment;
